@@ -1,2 +1,2 @@
 depot:
-	gcc -pthread -o depot main.cpp
+	g++ -pthread --output depot main.cpp
