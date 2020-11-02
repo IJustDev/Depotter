@@ -1,6 +1,6 @@
-# CLI Depot
+# Depotter
 
-This project is intended to help you testing your financial strategies.
+Depotter is intended to help you testing your financial strategies.
 CLI-Depot lets you create a plain txt file containing all the positions you've got (or would have invested in) and calculates the W/L and performance of each and all positions.
 
 ## Showcase
