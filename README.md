@@ -9,11 +9,11 @@ CLI-Depot lets you create a plain txt file containing all the positions you've g
 ## Build from source
 Since the application is written in C++ with minimal library dependency you simply need to run
 ```sh
-$ g++ main.cpp
+$ make
 ```
 and the depot should be available to you as binary.
 
-## Sample Depot file
+## /WIP/ Sample Depot file
 Create a file called `depot.txt` in the folder where the binary is contained with following content.
 ```
 1 AcmeInc 20 25
