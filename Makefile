@@ -7,5 +7,8 @@ main.o: main.cpp
 stockUpdater.o: stockUpdater.cpp
 	g++ -c stockUpdater.cpp
 
+install: depot
+	mv depot /usr/bin/depot
+
 clean:
 	rm *.o depot
