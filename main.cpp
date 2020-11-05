@@ -10,8 +10,9 @@ struct Position
 {
     double amount;
     string name;
-    double buyPrice;
+    string symbol;
     double currentValue;
+    double buyPrice;
 };
 typedef Position Position;
 
@@ -84,17 +85,14 @@ double getBuyPrice(Depot depot)
     return sum;
 }
 
-Position newPosition(double amount, string name, double buyPrice, double currentValue)
+Position newPosition(double amount, string name, string symbol, double buyPrice)
 {
     Position pos;
     pos.amount = amount;
     pos.name = name;
+    pos.symbol = symbol;
     pos.buyPrice = buyPrice;
-    if (currentValue == -1)
-    {
-        currentValue = buyPrice;
-    }
-    pos.currentValue = currentValue;
+    pos.currentValue = getStockPrice(symbol.c_str());
     return pos;
 }
 
@@ -109,14 +107,21 @@ double calculatePerformance(Depot depot)
 void printDepot(Depot depot)
 {
     cout << "Your Depot" << endl;
-    cout << pad("Amount", 20) << " | " << pad("Name", 20) << " | " << pad("Buy Price", 15) << " | " << pad("Current Value", 15) << " | "
+    cout
+        << pad("Amount", 20) << " | "
+        << pad("Name", 20) << " | "
+        << pad("Symbol", 10) << " | "
+        << pad("Buy Price", 15) << " | "
+        << pad("Current Value", 15) << " | "
         << "Performance" << endl;
+
     for (int i = 0; i < depot.positions.size(); i++)
     {
         Position pos = depot.positions[i];
         cout
             << pad(to_string(pos.amount), 20) << " | "
             << pad(pos.name, 20) << " | "
+            << pad(pos.symbol, 10) << " | "
             << pad(to_string(pos.buyPrice), 15) << " | "
             << pad(to_string(pos.currentValue), 15) << " | "
             << ((pos.currentValue / pos.buyPrice) - 1) * 100 << " %"
@@ -151,9 +156,9 @@ Depot readDepotFromFile(string filename)
         }
         double amount = stod(parts[0]);
         string name = parts[1];
-        double buyPrice = stod(parts[2]);
-        double currentValue = stod(parts[3]);
-        d.positions.push_back(newPosition(amount, name, buyPrice, currentValue));
+        string symbol = parts[2];
+        double buyPrice = stod(parts[3]);
+        d.positions.push_back(newPosition(amount, name, symbol, buyPrice));
     }
 
     return d;

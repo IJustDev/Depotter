@@ -3,6 +3,8 @@
 Depotter is intended to help you testing your financial strategies.
 Depotter lets you create a plain txt file containing all the positions you've got (or would have invested in) and calculates the W/L and performance of each and all positions.
 
+It uses the unoffical Yahoo Finance API.
+
 ## Showcase
 ![Showcase](resources/showcase.png)
 
@@ -13,21 +15,20 @@ $ make
 ```
 and the depot should be available to you as binary.
 
+## Prerequisites
+1. Install the [`cJSON`][cjson] library and add it to your library path.
+
 ## Usage
 Create a file called `depot.txt` with following content.
 
 ### Sample Depot file
 ```
-# This is a comment
-1 AcmeInc 20 25
-2 Google 30 10
+# Amount Name Yahoo-Symbol BuyPrice
+8.3 Dax ^GDAXI 11003
+1.03 MSCI-WLD EUNL.DE 45
 ```
-```
-1 -> Amount
-AcmeInc -> Company
-20 -> Buy Price
-25 -> Current Value
-```
+
+*NOTE*: See the [`sample_depot_file.txt`](./sample_depot_file.txt) in this repository for a file with more than just two positions.
 
 Then call
 ```sh
@@ -41,3 +42,5 @@ $ # or
 $ ./depot ~/depot.txt
 ```
 
+
+[cjson]: https://github.com/DaveGamble/cJSON#cmake
